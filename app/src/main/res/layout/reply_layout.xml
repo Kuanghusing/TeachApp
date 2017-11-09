@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:gravity="bottom">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ddd"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/emotion_voice"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon_chat_voice"/>
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="3"
+            android:minHeight="36dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="15sp"
+            android:background="@drawable/corners_edit_white"/>
+        <TextView
+            android:id="@+id/voice_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minHeight="36dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="按住说话"
+            android:textSize="17sp"
+            android:visibility="gone"
+            android:background="@drawable/corners_edit"/>
+
+        <ImageView
+            android:id="@+id/emotion_button"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:src="@mipmap/icon_chat_expression"/>
+        <ImageView
+            android:id="@+id/emotion_add"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/icon_chat_add"/>
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:padding="1dp"
+            android:text="发送"
+            android:textColor="#ffffff"
+            android:background="@drawable/corners_send_button"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ddd"/>
+    <LinearLayout
+        android:id="@+id/emotion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#ddd"
+        android:visibility="gone"
+        android:orientation="vertical"
+        >
+
+
+        <widget.NoScrollViewPager
+            android:id="@+id/noscroll_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>
