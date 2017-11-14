@@ -5,21 +5,16 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.support.design.widget.TabLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,62 +45,6 @@ public class Utils {
         bos.flush();
         bos.close();
      }
-
- //修改tablayout下划线的宽度
-    public static void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
-
-        Class tabLayout = tabs.getClass();
-
-        Field tabStrip =null;
-
-        try{
-
-            tabStrip = tabLayout.getDeclaredField("mTabStrip");
-
-        }catch(NoSuchFieldException e) {
-
-            e.printStackTrace();
-
-        }
-
-        tabStrip.setAccessible(true);
-
-        LinearLayout llTab =null;
-
-        try{
-
-            llTab = (LinearLayout) tabStrip.get(tabs);
-
-        }catch(IllegalAccessException e) {
-
-            e.printStackTrace();
-
-        }
-
-        int left = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,leftDip,Resources.getSystem().getDisplayMetrics());
-
-        int right = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,rightDip,Resources.getSystem().getDisplayMetrics());
-
-        for(int i =0;i < llTab.getChildCount();i++) {
-
-            View child = llTab.getChildAt(i);
-
-            child.setPadding(0,0,0,0);
-
-            LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT,1);
-
-            params.leftMargin= left;
-
-            params.rightMargin= right;
-
-            child.setLayoutParams(params);
-
-            child.invalidate();
-
-        }
-
-    }
-
      /*返回当前的格式：yyyyMMddHHmmss*/
      public static String getCurrentTime(){
          SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");

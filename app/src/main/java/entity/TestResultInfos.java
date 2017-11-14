@@ -2,6 +2,7 @@ package entity;
 
 /**
  * Created by Tian on 2017/10/31.
+ * 测验成绩信息
  */
 
 public class TestResultInfos {

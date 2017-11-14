@@ -2,7 +2,7 @@ package entity;
 
 /**
  * Created by Tian on 2017/10/31.
- * 消息列表
+ * 聊天消息列表
  */
 
 public class MessageInfo {

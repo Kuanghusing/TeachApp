@@ -15,6 +15,7 @@ import entity.TestResultInfos;
 
 /**
  * Created by Tian on 2017/10/31.
+ * 测验结果
  */
 
 public class TestResultAdapter  extends RecyclerView.Adapter<TestResultAdapter.ViewHolder>{
@@ -46,6 +47,7 @@ public class TestResultAdapter  extends RecyclerView.Adapter<TestResultAdapter.V
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext())
+
                 .inflate(R.layout.test_result_list,parent,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;

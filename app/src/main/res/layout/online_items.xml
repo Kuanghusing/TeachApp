@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/iv_headers"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/tv_userName"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="黄小明"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/tv_userType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已进入"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

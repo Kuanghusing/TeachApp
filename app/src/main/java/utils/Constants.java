@@ -1,7 +1,7 @@
 package utils;
 
 /**
- *
+ *聊天的状态
  */
 public class Constants {
     public static final String TAG = "teachApp";

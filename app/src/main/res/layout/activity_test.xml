@@ -10,7 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ddd">
+        android:background="#03c476">
       <LinearLayout
           android:orientation="horizontal"
           android:layout_width="match_parent"
@@ -44,16 +44,14 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ddd"
+        android:background="#fff"
         app:tabGravity="center"
         app:tabMode="scrollable"
-        app:tabTextColor="@color/colorPrimary"
-        app:tabSelectedTextColor="#000"
-        app:tabIndicatorColor="#000">
+        app:tabTextColor="#949292"
+        app:tabSelectedTextColor="#03c476"
+        app:tabIndicatorColor="#03c476">
 
     </android.support.design.widget.TabLayout>
-
-
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
@@ -69,13 +67,49 @@
             android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:background="#666"
+            android:background="#03c476"
+            android:padding="5dp"
             android:orientation="horizontal">
-
             <TextView
+                android:textColor="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="分数" />
+                android:text="得分：" />
+            <TextView
+                android:textColor="#ffffff"
+                android:id="@+id/tv_sum"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="400" />
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正确数：" />
+            <TextView
+                android:textColor="#ffffff"
+                android:id="@+id/tv_correct"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40" />
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12" />
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/" />
+            <TextView
+                android:textColor="#ffffff"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,11 +121,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:background="#666">
+                android:padding="3dp"
+                android:background="#03c476">
                 <TextView
+                    android:textColor="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="总分" />
+                    android:text="总分数：" />
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="400" />
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="错误数：" />
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="40" />
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未作答：" />
+                <TextView
+                    android:textColor="#ffffff"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,12 +170,8 @@
                     android:layout_height="match_parent"
                     android:numColumns="5"
                     android:verticalSpacing="5dip">
-
                 </GridView>
-
-
             </LinearLayout>
-
 
         </LinearLayout>
 

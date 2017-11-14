@@ -28,14 +28,14 @@
                 android:layout_height="200dp"
                 android:clickable="true"
                 android:src="@mipmap/ic_launcher"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
-            <VideoView
+            <player.VideoPlayer
                 android:id="@+id/video"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:clickable="true"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <RadioGroup
                 android:layout_width="match_parent"

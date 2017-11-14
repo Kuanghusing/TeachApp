@@ -16,9 +16,9 @@ import java.util.List;
 import adapter.GridViewAdapter;
 import adapter.MyPagerAdapter;
 import fragment.TitlesFragment;
-import utils.Utils;
+import utils.VideoPlayerManager;
 
-public class TestActivity extends AppCompatActivity implements View.OnClickListener{
+public class TestActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
     GridView gridView;
     LinearLayout ll;
     LinearLayout ll_result;
@@ -55,17 +55,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         }
         adapter=new MyPagerAdapter(this,titles);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                Utils.setIndicator(tabLayout,50,50);
-            }
-        });
+        viewPager.setOnPageChangeListener(this);
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()){
             case R.id.ll:
                 if(ll_result.isShown()){
@@ -78,5 +74,32 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        VideoPlayerManager.getInstance().releaseVideoPlayer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (VideoPlayerManager.getInstance().onBackPressed()) return;
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

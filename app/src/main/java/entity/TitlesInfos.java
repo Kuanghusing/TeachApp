@@ -2,11 +2,11 @@ package entity;
 
 /**
  * Created by Tian on 2017/11/7.
+ * 测验的题目信息
  */
 
 public class TitlesInfos {
     private String title;
-    private String imageId;
 
     public String getTitle() {
         return title;
@@ -16,11 +16,5 @@ public class TitlesInfos {
         this.title = title;
     }
 
-    public String getImageId() {
-        return imageId;
-    }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
 }

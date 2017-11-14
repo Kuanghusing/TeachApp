@@ -62,7 +62,7 @@ public class RecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
             //每个分割线的底部位置都是上一个条目的头部
             mRect.bottom = parent.getChildAt(i).getTop();
             //每个分割线的头部位置都是底部位置-10px
-            mRect.top = mRect.bottom - 5;
+            mRect.top = mRect.bottom - 2;
             canvas.drawRect(mRect, mPaint);
         }
     }

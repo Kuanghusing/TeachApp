@@ -9,6 +9,7 @@ import com.news.teachapp.R;
 
 /**
  * Created by Tian on 2017/11/6.
+ * 放置题目的对与错信息
  */
 
 public class GridViewAdapter extends BaseAdapter{
