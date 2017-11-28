@@ -70,10 +70,12 @@
         <TextView
             android:id="@+id/tv_request_permission"
             android:textSize="15sp"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="高三甲、高三丙"
-            android:maxLines="5"/>
+            android:singleLine="true"
+            android:lines="2"
+            android:ellipsize="end"/>
         <ImageView
             android:id="@+id/iv_next_permission"
             android:layout_gravity="center"

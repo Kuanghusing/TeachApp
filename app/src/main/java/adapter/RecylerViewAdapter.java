@@ -61,7 +61,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
         return testNameInfosList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView headers;
         TextView testName;
         TextView createName;

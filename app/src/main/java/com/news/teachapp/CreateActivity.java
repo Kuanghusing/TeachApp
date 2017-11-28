@@ -51,6 +51,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
        /*为recyclerView添加分割线*/
         recylerView.addItemDecoration(new RecyclerViewItemDecoration());
         adapter=new RecylerViewAdapter(testInfos);
+
         recylerView.setAdapter(adapter);
         create.setOnClickListener(this);
         back.setOnClickListener(this);

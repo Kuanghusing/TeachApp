@@ -39,7 +39,11 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
         OnlineInfos infos=onlineInfoses.get(position);
         holder.headers.setImageResource(infos.getImageId());
         holder.userName.setText(infos.getUserName());
-       // holder.userType.setText(infos.getType());
+        if (infos.getType()==OnlineInfos.TYPE_ENTER){
+            holder.userType.setText("已进入");
+        }else if (infos.getType()==OnlineInfos.TYPE_EXIT){
+            holder.userType.setText("已退出");
+        }
 
     }
 

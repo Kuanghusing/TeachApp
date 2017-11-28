@@ -1,11 +1,13 @@
 package entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Tian on 2017/11/13.
  * 班级名称
  */
 
-public class ClassNameInfos {
+public class ClassNameInfos implements Serializable{
     private int type;
     private String className;
     public static final int TYPE_CHECK=0;

@@ -6,7 +6,13 @@ package entity;
  */
 
 public class TitlesInfos {
+
     private String title;
+
+    public TitlesInfos(String title) {
+
+        this.title = title;
+    }
 
     public String getTitle() {
         return title;

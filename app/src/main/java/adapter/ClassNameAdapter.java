@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.news.teachapp.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 import entity.ClassNameInfos;
@@ -23,11 +24,33 @@ import entity.ClassNameInfos;
 public class ClassNameAdapter extends BaseAdapter {
     private List<ClassNameInfos> classNameInfoses;
     private Context mContext;
+    //checkbox的选中状态
+    private static HashMap<Integer,Boolean> isSelected ;
 
-    public ClassNameAdapter(Context context,List<ClassNameInfos> classNameInfoses) {
+    public ClassNameAdapter(Context context, List<ClassNameInfos> classNameInfoses, HashMap<Integer,Boolean> isSelected) {
         this.mContext=context;
         this.classNameInfoses = classNameInfoses;
+        this.isSelected=isSelected;
+        initData();
+
     }
+
+    private void initData() {
+        for (int i = 0; i <classNameInfoses.size() ; i++) {
+            isSelected.put(i,false);
+          //  Toast.makeText(mContext, ""+i, Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+    public static void setIsSelected(HashMap<Integer, Boolean> isSelected) {
+        ClassNameAdapter.isSelected = isSelected;
+    }
+    public static HashMap<Integer,Boolean> getIsSelected(){
+        return isSelected;
+    }
+
 
     @Override
     public int getCount() {
@@ -47,12 +70,13 @@ public class ClassNameAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view;
-        ViewHolder holder;
+        final ViewHolder holder;
         if (convertView==null){
             view= LayoutInflater.from(mContext).inflate(R.layout.class_name_items,parent,false);
             holder=new ViewHolder();
             holder.className=view.findViewById(R.id.tv_class_name);
             holder.checkBox=view.findViewById(R.id.checkBox);
+            holder.ll=view.findViewById(R.id.ll_class_name);
             view.setTag(holder);
         }else{
             view=convertView;
@@ -64,14 +88,32 @@ public class ClassNameAdapter extends BaseAdapter {
         }else{
             holder.checkBox.setChecked(false);
         }
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    classNameInfoses.get(position).setType(ClassNameInfos.TYPE_CHECK);
+            public void onClick(View v) {
+                if (isSelected.get(position)){
+                    isSelected.put(position,false);
+                    setIsSelected(isSelected);
                 }else{
-                    classNameInfoses.get(position).setType(ClassNameInfos.TYPE_NOCHECK);
+                    isSelected.put(position,true);
+                    setIsSelected(isSelected);
                 }
+                notifyDataSetChanged();
+            }
+        });
+     //   Toast.makeText(mContext, ""+getIsSelected().get(0), Toast.LENGTH_SHORT).show();
+       holder.checkBox.setChecked(getIsSelected().get(position));
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSelected.get(position)){
+                    isSelected.put(position,false);
+                    setIsSelected(isSelected);
+                }else{
+                    isSelected.put(position,true);
+                    setIsSelected(isSelected);
+                }
+                notifyDataSetChanged();
             }
         });
         return view;
@@ -79,5 +121,6 @@ public class ClassNameAdapter extends BaseAdapter {
     class ViewHolder{
         TextView className;
         CheckBox checkBox;
+        LinearLayout ll;
     }
 }

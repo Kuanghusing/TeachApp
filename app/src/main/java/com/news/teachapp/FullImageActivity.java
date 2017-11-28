@@ -1,6 +1,5 @@
 package com.news.teachapp;
 
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -14,9 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -34,32 +31,42 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import entity.FullImageInfo;
 import utils.Utils;
+import widget.BaseDragZoomImageView;
 
 /**
  * 显示点进去的图片
  */
 public class FullImageActivity extends Activity implements View.OnClickListener{
 
-    @Bind(R.id.full_image)
-    ImageView fullImage;
+  /*  @Bind(R.id.full_image)
+    ImageView fullImage;*/
     @Bind(R.id.full_lay)
-    LinearLayout fullLay;
+  LinearLayout fullLay;
     private Button savePhoto;
     private int mLeft;
     private int mTop;
     private float mScaleX;  //x缩放比例
     private float mScaleY;  //y缩放比例
     private Drawable mBackground;
+    BaseDragZoomImageView imageView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉actionbar
         setContentView(R.layout.activity_full_image);
         savePhoto=findViewById(R.id.btn_save);
         savePhoto.setOnClickListener(this);
-        ButterKnife.bind(this);
+         imageView=findViewById(R.id.full_image);
+
+     //  Glide.with(this).load().into(imageView);
+      ButterKnife.bind(this);
         /*注册EventBus*/
+
+
         EventBus.getDefault().register(this);
     }
 
@@ -72,26 +79,39 @@ public class FullImageActivity extends Activity implements View.OnClickListener{
         final int width = fullImageInfo.getWidth();
         final int height = fullImageInfo.getHeight();
         mBackground = new ColorDrawable(Color.BLACK);
-        fullLay.setBackground(mBackground);
-        fullImage.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+       fullLay.setBackground(mBackground);
+
+
+        Toast.makeText(this, fullImageInfo.getImageUrl(), Toast.LENGTH_SHORT).show();
+
+        imageView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                fullImage.getViewTreeObserver().removeOnPreDrawListener(this);
+                imageView.getViewTreeObserver().removeOnPreDrawListener(this);
                 int location[] = new int[2];
-                fullImage.getLocationOnScreen(location);
+                imageView.getLocationOnScreen(location);
                 mLeft = left - location[0];
                 mTop = top - location[1];
-                mScaleX = width * 1.0f / fullImage.getWidth();
-                mScaleY = height * 1.0f / fullImage.getHeight();
-                activityEnterAnim();
+                mScaleX = width * 1.0f / imageView.getWidth();
+                mScaleY = height * 1.0f / imageView.getHeight();
+               // activityEnterAnim();
                 return true;
             }
         });
-        //Glide加载图片
-        Glide.with(this).load(fullImageInfo.getImageUrl()).into(fullImage);
+       /* Bitmap bitmap= BitmapUtils.decodeSampledBitmapFromResource(getResources()
+                ,R.mipmap.ic_launcher,900,500);
+        fullImage.setImageBitmap(bitmap);*/
+      /*  Bitmap bitmap= BitmapUtils.decodeSampledBitmapFromResource(getResources(),fullImageInfo.getImageUrl().,100,100);
+        imageView.setImageBitmap(bitmap);*/
+//Glide加载图片
+       Glide.with(this).load(fullImageInfo.getImageUrl()).into(imageView);
+
+
+
+
     }
    //  点击图片的动画效果
-    private void activityEnterAnim() {
+   /* private void activityEnterAnim() {
         fullImage.setPivotX(0);
         fullImage.setPivotY(0);
         fullImage.setScaleX(mScaleX);
@@ -105,8 +125,8 @@ public class FullImageActivity extends Activity implements View.OnClickListener{
         objectAnimator.setDuration(500);
         objectAnimator.start();
     }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+*/
+    /*@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void activityExitAnim(Runnable runnable) {
         fullImage.setPivotX(0);
         fullImage.setPivotY(0);
@@ -117,29 +137,34 @@ public class FullImageActivity extends Activity implements View.OnClickListener{
         objectAnimator.setInterpolator(new DecelerateInterpolator());
         objectAnimator.setDuration(500);
         objectAnimator.start();
-    }
+    }*/
    /*按下返回键*/
     @Override
     public void onBackPressed() {
-        activityExitAnim(new Runnable() {
+        finish();
+      /*  activityExitAnim(new Runnable() {
             @Override
             public void run() {
                 finish();
                 overridePendingTransition(0, 0);
             }
-        });
+        });*/
     }
 
     @OnClick(R.id.full_image)
     public void onClick() {
-        activityExitAnim(new Runnable() {
+
+        finish();
+       /* activityExitAnim(new Runnable() {
             @Override
             public void run() {
                 finish();
                 overridePendingTransition(0, 0);
             }
-        });
+        });*/
     }
+
+
 
     @Override
     protected void onDestroy() {
@@ -166,9 +191,10 @@ public class FullImageActivity extends Activity implements View.OnClickListener{
                             Log.v("lqnlog", ""+e.toString());
                             e.printStackTrace();
                         }
+
                     }
                 }).start();
-               /* String path= Environment.getExternalStorageDirectory().getAbsolutePath();
+              /*  String path= Environment.getExternalStorageDirectory().getAbsolutePath();
                 File file=new File(path);
                 Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                 Uri uri = Uri.fromFile(file);
